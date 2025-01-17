@@ -267,7 +267,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
       Manifest.permission.WRITE_EXTERNAL_STORAGE
     ) == PackageManager.PERMISSION_GRANTED
     if (hasStoragePermission || isSdkHigherThan28()) {
-      showLoading("Saving...")
+      showLoading(".....")
       val path: File = Environment.getExternalStoragePublicDirectory(
         Environment.DIRECTORY_PICTURES
       )
