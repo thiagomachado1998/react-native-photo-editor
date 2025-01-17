@@ -29,6 +29,7 @@ public class EditingToolsAdapter extends RecyclerView.Adapter<EditingToolsAdapte
   public EditingToolsAdapter(OnItemSelected onItemSelected) {
     mOnItemSelected = onItemSelected;
     mToolList.add(new ToolModel(getTranslatedSignature(), R.drawable.ic_sticker, ToolType.STICKER));
+    mToolList.add(new  (getTranslatedText(), R.drawable.ic_smallcaps, ToolType.TEXT));
   }
 
   public interface OnItemSelected {
@@ -56,6 +57,28 @@ public class EditingToolsAdapter extends RecyclerView.Adapter<EditingToolsAdapte
             return "Signatures"; 
     }
   }
+
+  private String getTranslatedText() {
+    String languageCode = Locale.getDefault().getLanguage();
+
+    switch (languageCode) {
+        case "pt": 
+            return "Texto";
+        case "es":
+            return "Texto"; 
+        case "fr": 
+            return "Texte"; 
+        case "de": 
+            return "Text";  
+        case "ja": 
+            return "テキスト";  
+        case "zh": 
+            return "文本";  
+        default: 
+            return "Text"; 
+    }
+}
+
 
   class ToolModel {
     private String mToolName;
