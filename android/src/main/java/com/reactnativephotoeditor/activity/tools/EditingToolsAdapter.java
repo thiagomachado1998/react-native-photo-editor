@@ -3,6 +3,8 @@ package com.reactnativephotoeditor.activity.tools;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.Locale;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,11 +28,33 @@ public class EditingToolsAdapter extends RecyclerView.Adapter<EditingToolsAdapte
 
   public EditingToolsAdapter(OnItemSelected onItemSelected) {
     mOnItemSelected = onItemSelected;
-    mToolList.add(new ToolModel("Signature", R.drawable.ic_sticker, ToolType.STICKER));
+    mToolList.add(new ToolModel(getTranslatedSignature(), R.drawable.ic_sticker, ToolType.STICKER));
   }
 
   public interface OnItemSelected {
     void onToolSelected(ToolType toolType);
+  }
+
+  // Método para obter a tradução com base no idioma do dispositivo
+  private String getTranslatedSignature() {
+    String languageCode = Locale.getDefault().getLanguage();
+
+    switch (languageCode) {
+        case "pt": 
+            return "Assinaturas";
+        case "es":
+            return "Firmas"; 
+        case "fr": 
+            return "Signatures"; 
+        case "de": 
+            return "Unterschriften";  
+        case "ja": 
+            return "署名（複数）";  
+        case "zh": 
+            return "签名（复数）";  
+        default: 
+            return "Signatures"; 
+    }
   }
 
   class ToolModel {
@@ -78,3 +102,4 @@ public class EditingToolsAdapter extends RecyclerView.Adapter<EditingToolsAdapte
     }
   }
 }
+
